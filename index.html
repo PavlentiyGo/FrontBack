@@ -13,69 +13,120 @@
 
 <body>
     <!-- Шапка сайта -->
-    <header>
-        <a href="">Fullstack</a>
-        <!-- Главное меню навигации -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="about.html">О нас</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
+    <header class="site-header">
+        <a class="site-header__brand" href="/">Лого</a>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <ul class="site-nav__list">
+                <li class="site-nav__item"><a class="site-nav__link site-nav__link--active"
+                        href="index.html">Главная</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="about.html">О нас</a></li>
+                <li class="site-nav__item"><a class="site-nav__link site-nav__link--cta" href="#contacts">Связаться</a>
+                </li>
             </ul>
         </nav>
     </header>
+
     <!-- Уникальное основное содержимое страницы -->
     <main>
+        <!-- Хлебные крошки -->
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a class="breadcrumbs__link" href="/">Главная</a>
+            <span class="breadcrumbs__current">Текущая страница</span>
+        </nav>
+
         <h1>Добро пожаловать на наш сайт!</h1>
-        <!-- Секция 1 с якорем -->
+
         <!-- Кнопка открытия модалки -->
-        <button id="openDialog" type="button">Написать нам</button>
+        <button id="openDialog" type="button" class="button">Написать нам</button>
+
+        <!-- Герой секция с градиентным оверлеем -->
+        <section class="hero-section">
+            <picture>
+                <source srcset="hero-1920.avif 1920w, hero-1280.avif 1280w" type="image/avif">
+                <source srcset="hero-1920.webp 1920w, hero-1280.webp 1280w" type="image/webp">
+                <img src="hero-1920.jpg" srcset="hero-1280.jpg 1280w, hero-1920.jpg 1920w"
+                    sizes="(max-width: 768px) 100vw, 80vw" alt="Главный баннер" class="responsive-image">
+            </picture>
+            <div class="hero-content">
+                <h2>Мы создаём цифровые решения</h2>
+                <p>Инновационные подходы к веб-разработке</p>
+            </div>
+        </section>
+
+        <!-- Секция услуг -->
+        <section id="services">
+            <h2>Наши услуги</h2>
+            <p>Описание предоставляемых услуг...</p>
+            <picture>
+                <source type="avif" srcset="card.avif">
+                <source type="webp" srcset="card.webp">
+                <img src="./images.jpeg" alt="Проект: макет мобильного приложения" width="640" height="360"
+                    class="responsive-image">
+            </picture>
+            <br>
+            <a href="#contacts" class="button">Связаться с нами</a>
+        </section>
+
+        <!-- Секция портфолио -->
+        <section id="portfolio">
+            <h2>Портфолио</h2>
+            <p>Примеры наших работ...</p>
+
+            <div class="media">
+                <iframe src="https://rutube.ru/play/embed/a2ec3e1e9962b0387475503eb6b525f9" title="Видео о проекте"
+                    allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen
+                    loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- Секция контактов -->
+        <section id="contacts">
+            <h2>Контактная информация</h2>
+            <p>Наши контакты... <a href="contacts.html">Подробнее</a></p>
+        </section>
+
         <!-- Модалка с формой -->
         <dialog id="contactDialog" aria-labelledby="dialogTitle">
             <h2 id="dialogTitle">Обратная связь</h2>
             <form id="contactForm" method="dialog" novalidate>
-                
                 <label for="name">Имя</label>
                 <input id="name" name="name" type="text" required minlength="2" autocomplete="given-name">
+                <span class="error-message">Пожалуйста, введите имя</span>
+
                 <label for="email">E-mail</label>
                 <input id="email" name="email" type="email" required autocomplete="email">
+                <span class="error-message">Пожалуйста, введите корректный email</span>
+
                 <label for="phone">Телефон</label>
                 <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
                     aria-describedby="phoneHelp" placeholder="+7 (___) ___-__-__" required
                     pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$">
                 <small id="phoneHelp">Формат: +7 (900) 000-00-00</small>
+                <span class="error-message">Пожалуйста, введите телефон в правильном формате</span>
+
                 <label for="date">Дата</label>
                 <input id="date" name="date" type="date">
+
                 <label for="topic">Тема</label>
                 <select id="topic" name="topic" required>
                     <option value="">Выберите тему</option>
-                    <option>Вопрос</option>
-                    <option>Заказ</option>
+                    <option value="question">Вопрос</option>
+                    <option value="order">Заказ</option>
                 </select>
+                <span class="error-message">Пожалуйста, выберите тему</span>
+
                 <label for="message">Сообщение</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
+                <span class="error-message">Пожалуйста, введите сообщение</span>
+
                 <div class="form-actions">
                     <button type="button" id="closeDialog">Закрыть</button>
                     <button type="submit">Отправить</button>
                 </div>
             </form>
         </dialog>
-        <section id="services">
-            <h2>Наши услуги</h2>
-            <p>Описание предоставляемых услуг...</p>
-            <a href="#contacts">Связаться с нами</a> <!-- Якорная ссылка внутри страницы -->
-        </section>
-        <!-- Секция 2 с якорем -->
-        <section id="portfolio">
-            <h2>Портфолио</h2>
-            <p>Примеры наших работ...</p>
-        </section>
-        <!-- Секция 3 с якорем -->
-        <section id="contacts">
-            <h2>Контактная информация</h2>
-            <p>Наши контакты...<a href="contacts.html">Подробнее</a> <!-- Ссылка на отдельную страницу -->
-        </section>
     </main>
+
     <!-- Подвал сайта -->
     <footer>
         <p>&copy; 2025 Fullstack. Все права защищены.</p>
