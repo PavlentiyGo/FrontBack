@@ -74,7 +74,107 @@ button:hover {
     cursor: not-allowed;
 }
 
-/* Подсветка ошибочных полей (установите aria-invalid="true") */
+/* Более заметная подсветка ошибок */
 [aria-invalid="true"] {
     border-color: #b00020;
+    background-color: #fff8f8;
+    box-shadow: 0 0 0 2px rgba(176, 0, 32, 0.2);
+}
+
+/* Сообщения об ошибках */
+.error-message {
+    color: #b00020;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+[aria-invalid="true"] + .error-message {
+    display: block;
+}
+/* Стили для диалога успеха */
+.success-dialog {
+    padding: 2rem;
+    border: none;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.success-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.success-content h3 {
+    margin: 0;
+    color: #2e7d32;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.success-content p {
+    margin: 0;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.success-btn {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.success-btn:hover {
+    background: #1b5e20;
+    transform: translateY(-1px);
+}
+
+.success-btn:active {
+    transform: translateY(0);
+}
+
+/* Анимации для плавного появления */
+dialog {
+    animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.success-dialog {
+    animation: successFadeIn 0.4s ease-out;
+}
+
+@keyframes successFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
